@@ -1,0 +1,2 @@
+#!/bin/bash
+mysql --user= --password= --database= --execute="INSERT INTO SonarDictionary (MetricGeneratorKey, SonarName) SELECT Projects.key, Projects.name FROM Projects WHERE Projects.key NOT IN (SELECT Projects.key FROM Projects INNER JOIN SonarDictionary ON Projects.key=SonarDictionary.MetricGeneratorKey GROUP BY Projects.key, Projects.name) GROUP BY Projects.key, Projects.name"
